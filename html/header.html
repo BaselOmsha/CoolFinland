@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${sessionScope.readUsersInfo.fname }
+	${sessionScope.readUsersInfo.lname } | ChatNook</title>
+<link rel="stylesheet" href="../css/profile.css" />
+<link rel="shortcut icon" href="./images/Logo2.png" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+	rel="stylesheet" />
+    <script src="../js/scripts.js"></script>
+</head>
+<!-- <%
+session.getAttribute("LoggedUser");
+%> -->
+<body onload="blueBottom(); changeColors();">
+	<header>
+		<div id="navbar">
+			<div class="logo-left-wrapper">
+				<a href="#ty"> <img class="home-button" alt="home button"
+					src="../images/Logo2.png" Style="height: 35px; width: 35px"></a>
+			</div>
+			<div class="center-topnav">
+				<div class="wrap">
+					<div class="wrap2">
+						<img class="home-button" alt="home button"
+							src="../images/homeIcon.png" Style="height: 20px; width: 20px"
+							onclick="window.location.href='#ty'">
+<!-- 						<%
+						if (session.getAttribute("LoggedUser") != null) {
+							String email = null;
+							String sessionID = null;
+							Cookie[] cookies = request.getCookies();
+							if (cookies != null) {
+								for (int i = 0; i < cookies.length; i++) {
+
+							if (cookies[i].getName().equals("LoggedUser"))
+								email = cookies[i].getValue();
+							if (cookies[i].getName().equals("JSESSIONID"))
+								sessionID = cookies[i].getValue();
+								}
+								/* out.println("Welcome, " + email); */
+							} else {
+								sessionID = session.getId();
+							}
+						} else if (session.getAttribute("LoggedUser") == null) {
+							response.sendRedirect("/index.html");
+						}
+						%> -->
+					</div>
+				</div>
+			</div>
+			<div class="logo-right-wrapper">
+				<img class="profile-button" alt="Profile button"
+					src="../images/account.png" Style="height: 35px; width: 35px"
+					onclick="expandWindow()">
+			</div>
+			<div id="profile-info-text-positioning">
+				<div id="profile-info-container">
+					<div class="prof-container" onclick="window.location.href='#ty'">
+						<div
+							class="main-profile-picture1 profile-button-main1 
+							profile-button-main-pic1"
+							onclick="">
+							<img alt="Profile picture" src="../images/avatar.png"
+								Style="height: 25px; width: 36px" onclick="">
+						</div>
+						<!-- ${sessionScope.readUsersInfo.fname }
+						${sessionScope.readUsersInfo.lname } -->
+					</div>
+					<div class="prof-nav-item" onclick="">
+						<div
+							class="main-profile-picture1 profile-button-main1 
+							profile-button-main-pic1"
+							onclick="">
+							<img alt="Profile picture" src="../images/dark-mode-icon.png"
+								Style="height: 35px; width: 36px" onclick="">
+						</div>
+						Dark Mode
+					</div>
+					<div class="prof-nav-item" onclick="window.location.href='/logout'">
+						<div
+							class="main-profile-picture1 profile-button-main1 
+							profile-button-main-pic1"
+							onclick="">
+							<img alt="Profile picture" src="../images/logout.png"
+								Style="height: 35px; width: 36px" onclick="">
+						</div>
+						Log out
+					</div>
+				</div>
+			</div>
+		</div>
+    </header> 
+    <main>
