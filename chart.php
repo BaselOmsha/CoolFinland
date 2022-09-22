@@ -14,6 +14,8 @@
       var data = google.visualization.arrayToDataTable([
         ['total_count', 'total_required', ],
         <?php
+        #the chart code is in the header  thats how we get it in html body <div id="piechart" style="width: 900px; height: 500px;"></div>
+
         include 'conn.php';
 
         $mysql = "SELECT SUM(container_amount) as total_count, 45 total_required FROM deliveries where delivery_date = curdate()   ";
@@ -68,6 +70,7 @@
 </head>
 
 <body>
+
 
   <div id="piechart" style="width: 900px; height: 500px;"></div>
 
