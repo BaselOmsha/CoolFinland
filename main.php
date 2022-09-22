@@ -3,7 +3,7 @@
 
 include 'conn.php';
 
-$mysql = "select * from deliveries ";
+$mysql = "select * from deliveries where delivery_date = curdate()  ";
 
 $result = $conn->query($mysql);
 if ($result->num_rows > 0) {
