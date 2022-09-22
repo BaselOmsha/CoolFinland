@@ -12,22 +12,21 @@
 
 
       var data = google.visualization.arrayToDataTable([
-        ['company_name', 'container_amount', ],
+        ['total_count', 'total_required', ],
         <?php
         include 'conn.php';
 
+        $mysql = "SELECT SUM(container_amount) as total_count, 45 total_required FROM deliveries where delivery_date = curdate()   ";
 
-
-
-        $mysql = "SELECT * FROM deliveries  ";
         $do = mysqli_query($conn, $mysql);
 
 
-        while ($result = mysqli_fetch_assoc($do)) {
+        while ($row = mysqli_fetch_assoc($do)) {
 
-          echo "['" . $result['company_name'] . "'," . $result['container_amount'] . "],";
+
+          echo "['Available', " . $row["total_required"] - $row["total_count"] . "],";
+          echo "['Reserved', " . $row["total_count"] . "],";
         }
-
         ?>
 
 
@@ -38,23 +37,25 @@
       var options = {
         title: 'Daily capacity',
         legend: {
-          position: 'bottom'
+          position: 'bottom',
+
         },
 
         pieHole: 0.4,
         pieStartAngle: 270,
-        slices: [{
-          offset: 0.
-        }, {
-          offset: 0.05
-        }, {
-          offset: 0.05
+        slices: [{}, {
+          offset: 0.09
         }, ],
+        'width': 400,
+        'height': 400,
+        colors: ['#74E29B', '#6996FF'],
+
 
 
 
 
       };
+
 
 
       var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -68,15 +69,6 @@
 
 <body>
 
-  <?php
-  $result = mysqli_query($conn, 'SELECT SUM(container_amount) AS value_sum FROM deliveries  where delivery_date = curdate()  ');
-  $row = mysqli_fetch_assoc($result);
-  $sum = $row['value_sum'];
-  echo 'Reserved: ', $sum = $row['value_sum'], ' containers';
-  echo '<br>';
-  echo 'Available: ',  45 - $sum, ' containers';
-
-  ?>
   <div id="piechart" style="width: 900px; height: 500px;"></div>
 
 </body>
