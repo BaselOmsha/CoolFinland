@@ -3,7 +3,7 @@
 
 include 'conn.php';
 
-$mysql = "select * from deliveries where delivery_date = curdate() ";
+$mysql = "select * from deliveries ";
 
 $result = $conn->query($mysql);
 if ($result->num_rows > 0) {
@@ -60,88 +60,109 @@ if ($result->num_rows > 0) {
 </head>
 
 <body>
+    <div>
 
-    <input type="text" class="input" id="myInput" onkeyup='tableSearch()' placeholder="Search by name..">
+        <input type="text" class="input" id="myInput" onkeyup='tableSearch()' placeholder="Search by name..">
 
-    <table class="table  " id="myTable">
-        <tr style="border:solid; ">
-            <th>delivery_id</th>
-            <th>company_id</th>
-            <th>company_name</th>
-            <th>delivery_date</th>
-            <th>container_amount</th>
-            <th>delivery_weight</th>
-            <th>delivery_status</th>
-            <th>site_maximum_capacity_t</th>
-            <th>more_info</th>
-        </tr>
+        <table class="table  " id="myTable">
+            <tr style="border:solid; ">
+                <th>delivery_id</th>
+                <th>company_id</th>
+                <th>company_name</th>
+                <th>delivery_date</th>
+                <th>container_amount</th>
+                <th>delivery_weight</th>
+                <th>delivery_status</th>
+                <th>site_maximum_capacity_t</th>
+                <th>delete</th>
 
-        <?php
-        #start of while loop
-        while ($row = mysqli_fetch_assoc($result)) {
 
-            $delivery_id = $row['delivery_id'];
-            $company_id = $row['company_id'];
-            $company_name = $row['company_name'];
-            $delivery_date = $row['delivery_date'];
-            $container_amount = $row['container_amount'];
-            $delivery_weight = $row['delivery_weight'];
-            $delivery_status = $row['delivery_status'];
-            $site_maximum_capacity_t = $row['site_maximum_capacity_t'];
-            $more_info = $row['more_info'];
 
-        ?>
-
-            <tr>
-
-                <td><?php echo $row['delivery_id'];  ?></td>
-                <td><?php echo $row['company_id'];   ?></td>
-                <td><?php echo $row['company_name']; ?></td>
-                <td><?php echo $row['delivery_date']; ?></td>
-                <td><?php echo $row['container_amount']; ?></td>
-                <td><?php echo $row['delivery_weight']; ?></td>
-                <td><?php echo $row['delivery_status']; ?></td>
-
-                </td>
 
             </tr>
 
+            <?php
+            #start of while loop
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                $delivery_id = $row['delivery_id'];
+                $company_id = $row['company_id'];
+                $company_name = $row['company_name'];
+                $delivery_date = $row['delivery_date'];
+                $container_amount = $row['container_amount'];
+                $delivery_weight = $row['delivery_weight'];
+                $delivery_status = $row['delivery_status'];
+                $site_maximum_capacity_t = $row['site_maximum_capacity_t'];
+                $more_info = $row['more_info'];
+
+
+
+
+
+
+            ?>
+
+                <tr>
+
+                    <td><?php echo $row['delivery_id'];  ?></td>
+                    <td><?php echo $row['company_id'];   ?></td>
+                    <td><?php echo $row['company_name']; ?></td>
+                    <td><?php echo $row['delivery_date']; ?></td>
+                    <td><?php echo $row['container_amount']; ?></td>
+                    <td><?php echo $row['delivery_weight']; ?></td>
+                    <td><?php echo $row['delivery_status']; ?></td>
+
+                    <td><?php echo $row['site_maximum_capacity_t']; ?></td>
+                    <td><button type="button" style="text-decoration:none; "><a href="deleterecord.php?delivery_id=<?php echo $row['delivery_id'];  ?>" style="text-decoration:none;">delete</a></button></td>
+
+
+
+
+
+
+
+                </tr>
+
+            <?php
+                # end of while loop
+            }
+            ?>
+        </table>
         <?php
-            # end of while loop
-        }
+        $result = mysqli_query($conn, 'SELECT SUM(container_amount) AS value_sum FROM deliveries  where delivery_date = curdate()  ');
+        $row = mysqli_fetch_assoc($result);
+        $sum = $row['value_sum'];
+        echo 'Capacity: ', $sum = $row['value_sum'];
+
+
+
+
         ?>
-    </table>
-    <?php
-    $result = mysqli_query($conn, 'SELECT SUM(container_amount) AS value_sum FROM deliveries where delivery_date = curdate()   ');
-    $row = mysqli_fetch_assoc($result);
-    $sum = $row['value_sum'];
-    echo 'Capacity: ', $sum = $row['value_sum'];
-    ?>
 
-    <script type="application/javascript">
-        //this is javascript for searchtable
-        function tableSearch() {
-            let input, filter, table, tr, td, txtValue;
-            //init variables
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
+        <script type="application/javascript">
+            //this is javascript for searchtable
+            function tableSearch() {
+                let input, filter, table, tr, td, txtValue;
+                //init variables
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
 
-            for (let i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
+                for (let i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[2];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
 
-                    } else {
-                        tr[i].style.display = "none";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
                     }
                 }
             }
-        }
-    </script>
+        </script>
 </body>
 
 </html>
