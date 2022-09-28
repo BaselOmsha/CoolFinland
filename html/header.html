@@ -5,14 +5,78 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${sessionScope.readUsersInfo.fname }
-	${sessionScope.readUsersInfo.lname } | ChatNook</title>
+	${sessionScope.readUsersInfo.lname } | Cool Finland</title>
 <link rel="stylesheet" href="../css/profile.css" />
 <link rel="shortcut icon" href="./images/Logo2.png" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
 	rel="stylesheet" />
     <script src="../js/scripts.js"></script>
-</head>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+	<!-- <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
+	<script>
+			$(function(){
+				$("#delivery_date2").datepicker({
+				
+				inline: true,
+				sideBySide: true,
+				keepOpen: true,
+				dateFormat: "yy-mm-dd",
+				debug:true,
+			// 	onSelect : function (dateText, inst) {
+			// $('#myform').submit();
+    		// }
+		});
+		});
+
+		function displayResult() {
+			document.getElementById("#delivery_date").innerHTML =document.getElementById("#delivery_date2").value;
+		}
+
+		$(function(){
+				$("#delivery_date").datepicker({
+				
+				inline: true,
+				sideBySide: true,
+				keepOpen: true,
+				dateFormat: "yy-mm-dd",
+				debug:true,
+			// 	onSelect : function (dateText, inst) {
+			// $('#myform').submit();
+    		// }
+		});
+		});
+
+		$(function(){
+				$("#delivery_date").datepicker({
+				
+				inline: true,
+				sideBySide: true,
+				keepOpen: true,
+				dateFormat: "yy-mm-dd",
+				debug:true,
+			// 	onSelect : function (dateText, inst) {
+			// $('#myform').submit();
+    		// }
+		});
+		});
+		
+		function Form2() {
+  			document.getElementById("myform2").submit();
+		}
+
+	</script>
+	<style>
+	input:focus {
+    outline: none !important;
+    border:1px solid #ffffff;
+    box-shadow: 0 0 10px #ffffff;
+  }
+	</style>
 <!-- <%
 session.getAttribute("LoggedUser");
 %> -->
@@ -71,16 +135,6 @@ session.getAttribute("LoggedUser");
 						<!-- ${sessionScope.readUsersInfo.fname }
 						${sessionScope.readUsersInfo.lname } -->
 					</div>
-					<div class="prof-nav-item" onclick="">
-						<div
-							class="main-profile-picture1 profile-button-main1 
-							profile-button-main-pic1"
-							onclick="">
-							<img alt="Profile picture" src="../images/dark-mode-icon.png"
-								Style="height: 35px; width: 36px" onclick="">
-						</div>
-						Dark Mode
-					</div>
 					<div class="prof-nav-item" onclick="window.location.href='/logout'">
 						<div
 							class="main-profile-picture1 profile-button-main1 
@@ -96,3 +150,8 @@ session.getAttribute("LoggedUser");
 		</div>
     </header> 
     <main>
+		
+		<div class="container">
+
+			<div class="content-container">
+				<script src="../js/scripts.js"></script>
