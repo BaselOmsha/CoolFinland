@@ -77,7 +77,7 @@ echo		"</div>";
 echo		"</tr>";
 			if ($count==0){ 
 				echo"</br>";
-				echo "No deliveries found on the selected date. Choose a different one form the left column!";
+				echo "<h5 style='color:red'>No deliveries found on the selected date. Choose a different one form the calander!</h5>";
 			}
 
 			 
@@ -106,7 +106,9 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 ?>
 			<div class="about-divider"></div>
 				<div class="infoCool" id="overview1" style="visibility: visible">
+				<?php $count2=0;?>
 					<?php while($row2 = mysqli_fetch_object($print2)) {?>
+						<?php $count2++;?>
 						<div class="info-header">
 							<h4 style="color: #000000">Delivery details</h4>
 						</div>
@@ -250,6 +252,10 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 						</div>	
 					</div>
 					<?php } 
+						if ($count2==0){ 
+							echo"</br>";
+							echo "<h3 style='color:red'>Select a company from the list of deliveries on the left columns.</h3>";
+						}
 						// } catch (Exception $e) {
 						// 	print "Error";
 						// } 	
