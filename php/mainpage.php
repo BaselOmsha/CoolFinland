@@ -13,7 +13,7 @@ include "../html/header.html";
 			<form id="myform" name="contact-form" action='mainpage.php' method='post'style="background-color:#ffffff;margin-right:20px">
 
 			<input type="text" onblur="this.focus()" autofocus id="delivery_date2" name="delivery_date" 
-			placeholder="" required style="visibility:visible; border:none; color:#ffffff;hover:#ffffff" />
+			placeholder="" required style="visibility:visible; border:none; color:#ffffff;" />
 					<!-- <input class="div1" type="date" id="delivery_date2" value='curdate()' name="delivery_date"> -->
 				<div  id=delivery_date name="delivery_date" type="text" style="margin-bottom:10px;">
 				
