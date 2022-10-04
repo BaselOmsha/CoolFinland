@@ -18,7 +18,7 @@
 
         include 'conn.php';
 
-        $mysql = "SELECT SUM(container_amount) as total_count, 50 total_required FROM deliveries  ";
+        $mysql = "SELECT SUM(container_amount) as total_count, 50 total_required FROM deliveries where delivery_date = curdate()  ";
 
         $do = mysqli_query($conn, $mysql);
 
