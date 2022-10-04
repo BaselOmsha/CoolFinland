@@ -18,7 +18,7 @@
 
         include 'conn.php';
 
-        $mysql = "SELECT SUM(container_amount) as total_count, 45 total_required FROM deliveries where delivery_date = curdate()   ";
+        $mysql = "SELECT SUM(container_amount) as total_count, 50 total_required FROM deliveries  ";
 
         $do = mysqli_query($conn, $mysql);
 
@@ -50,7 +50,7 @@
         }, ],
         'width': 400,
         'height': 400,
-        colors: ['#74E29B', '#6996FF'],
+        colors: ['#74E29B', '#F36767'],
 
 
 
