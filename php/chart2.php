@@ -36,10 +36,10 @@ include "../conn/conn.php";
 
             var options = {
             width: 500, height: 320,
-            redFrom: 40, redTo: 50,
-            yellowFrom:30, yellowTo: 40,
+            redFrom: 45, redTo: 50,
+            yellowFrom:35, yellowTo: 45,
             greenFrom: 0, greenTo:10,
-            minorTicks: 15
+            minorTicks: 10
             };
 
             var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
