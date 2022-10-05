@@ -40,13 +40,40 @@ body {
 	box-shadow: 0 8px 6px -6px var(--lightgrey);
 }
 
+.char-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding-left: 180px;
+	background-color: #000000;
+	border-radius: 10px 10px 10px 10px;
+	opacity: 80%;
+
+}
+#chart_div {
+	display: flex;
+	width: 500px; 
+	height: 320px; 
+	align-self: center;
+	margin-bottom:10px;
+}
+#chart_div1 {
+	display: flex;
+	width: 500px; 
+	height: 320px; 
+	align-self: center;
+	margin-bottom:10px;
+}
+
 .container {
 	background-color: #f0f2f5;
 	min-width: 100%;
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding-top: 130px;
+	padding-top: 80px;
 	padding-bottom: 130px;
 	width:100%;
 }
@@ -354,6 +381,7 @@ a {
 	
 }
 
+
 .calander-container {
 	display: flex;
 	flex-wrap: wrap;
@@ -366,8 +394,8 @@ a {
 	margin-bottom: 20px;
 	box-shadow: 0px -1px 1px lightgray, 
         -1px -1px 4px lightgray, 1px -1px 4px lightgray;
-	height: 450px;
-	overflow: auto;	
+	max-height: 100%;
+	
 }
 
 .division {
@@ -396,7 +424,7 @@ a {
 	display: flex;
 	justify-content: left;
 	align-items: center;
-	width: 66.667%;
+	width: 70.667%;
 	min-height: 100%;
 	overflow: hidden;	
 	border-radius: 10px;
@@ -406,10 +434,13 @@ a {
 	box-shadow: 0px -1px 1px lightgray, 
         -1px -1px 4px lightgray, 1px -1px 4px lightgray;
 }
-
+svg g text{
+	font-size:0.99em;
+	}
 .about-left-column {
 	display: flex;
-	justify-content: left;
+	justify-content: center;
+	align-items: center;
 	align-items: top;
 	flex-direction: column;
 	width: 580px;
@@ -420,7 +451,19 @@ a {
 	padding: 10px 0 0 10px;
 	overflow: auto;
 }
-
+.about-left-column1 {
+	display: flex;
+	justify-content: left;
+	align-items: top;
+	flex-direction: column;
+	width: 750px;
+	min-height: 100%;
+	background-color: #ffffff;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 10px 0 0 10px;
+	overflow: auto;
+}
 .about-divider {
 	height: 450px;
 	border: solid #ced0d4 1px;

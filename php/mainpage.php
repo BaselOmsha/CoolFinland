@@ -1,6 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
+    $_SESSION["returnSite"] = "/php/mainpage.php";
+    header("Location:../index.html");
+    exit();
+}
 include "../conn/conn.php";
-include "../html/header.html";
+include "./header.php";
 ?>
 	<div class="calander-container">
 		<div class="about-left-column" id="about-left-column" style="visibility: visibale">
@@ -9,10 +15,19 @@ include "../html/header.html";
 					<b onclick="changeColors()">Search By Date</b>
 				</h3>
 			</div>
+			<!-- Get current date -->
+			<!-- <?php 
+			$date3 = isset($_POST["delivery_date"]) ? $_POST["delivery_date"] : "";
+			$sql = "select delivery_date from deliveries where delivery_date=curdate()";
+			$do = mysqli_query($connection, $sql);
+			$row3 = mysqli_fetch_object($do) 
+			?> -->
+			
+			
 			<!-- <form id="myform"> -->
 			<form id="myform" name="contact-form" action='mainpage.php' method='post'style="background-color:#ffffff;margin-right:20px">
 
-			<input type="text" onblur="this.focus()" autofocus id="delivery_date2" name="delivery_date" 
+			<input type="text" onblur="this.focus()" autofocus id="delivery_date2" name="delivery_date" value="" 
 			placeholder="" required style="visibility:visible; border:none; color:#ffffff;" />
 					<!-- <input class="div1" type="date" id="delivery_date2" value='curdate()' name="delivery_date"> -->
 				<div  id=delivery_date name="delivery_date" type="text" style="margin-bottom:10px;">
@@ -30,7 +45,7 @@ include "../html/header.html";
 	<div class="division">
 	</div>
 	<div class='about-container'>
-		<div class="about-left-column" id="about-left-column" style="visibility: visibale">
+		<div class="about-left-column1" id="about-left-column" style="visibility: visibale">
 			<div class="left-columns-header">
 				<h3 style="color: #000000">
 					<b onclick="changeColors()">Deliveries</b>
@@ -47,34 +62,43 @@ try {
 	mysqli_stmt_bind_param($stmt, 's', $date);
 	mysqli_stmt_execute($stmt);
 	$print = mysqli_stmt_get_result($stmt);
-echo			"<div class='left-columns-header'>";
-echo				"<h4 style='color: #000000'>";
-echo					"<b onclick='blueBottom(); changeColors()'>Companies</b>";
-// echo	$print;
-echo				"</h4>";
-echo			"</div>";
-echo "<th  style='color: #000000'><b><h7>Company Name&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Delivery Status</h7></b></th>";
+	echo			"<div class='left-columns-header'>";
+	echo				"<h4 style='color: #000000'>";
+	echo					"<b onclick='blueBottom(); changeColors()'>Companies</b>";
+	// echo	$print;
+	echo				"</h4>";
+	echo			"</div>";
+echo	"<table>";
+echo		"<tr>";
+echo "<th  style='color: #000000'><b><h7>Company Name&nbsp;</h7></b></th>";
+echo	"<th style='color:#ffffff'>sssss&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+echo "<th  style='color: #000000'><b><h7>&nbsp; Delivery Status</h7></b></th>";
+echo		"</tr>";
 $count=0;
 			while($row = mysqli_fetch_object($print)) { //return the row of result as an object
 $count++;				
 echo		"<tr>";
-echo		"<div class='left-columns-buttons' href='#' id='overviewQ'>";
+// echo		"<div class='left-columns-buttons' href='#' id='overviewQ'>";
 echo		 "<br>";
 echo			"<form id='myform2' name='form2' action='mainpage.php' method='post'>";
-echo				"<td><input class='newInput' type='text' id='' name='delivery_id' value='$row->delivery_id'
+echo			"<td><input style='background-color:#dddddd' class='newInput' type='text' id='' name='company_name' value='$row->company_name'
+						placeholder='' onclick='changeColors(); Form2()' required  readonly/></td>";
+echo				"<td><input style='color:red' class='newInput' type='text' id='' name='delivery_id' value='$row->delivery_id'
 						placeholder='' onclick='changeColors(); Form2()' required hidden readonly/></td>";
+						echo 			"<td><h8>  $row->delivery_status</h8></td>&nbsp;&nbsp;";
 	echo			"<td><input class='newInput' type='text' id='' name='delivery_date' value='$row->delivery_date'
 						placeholder='' onclick='changeColors(); Form2()' required hidden readonly/></td>";
 	echo			"<td><input class='newInput' type='text' id='' name='company_id' value='$row->company_id'
 						placeholder='' onclick='changeColors(); Form2()' required hidden readonly/></td>";
-	echo			"<td><input class='newInput' type='text' id='' name='company_name' value='$row->company_name'
-						placeholder='' onclick='changeColors(); Form2()' required  readonly/></td>";
-	echo 			"<td><h8>  $row->delivery_status</h8></td>&nbsp;&nbsp;";
+	
+	
 	echo			"<td><button id='myBtn' class='comp-select-button' type='submit'>Select</button></td>";
 echo			"</form>";
 echo		"</div>";
 						}  
 echo		"</tr>";
+echo	"</table>";
+
 			if ($count==0){ 
 				echo"</br>";
 				echo "<h5 style='color:red'>No deliveries found on the selected date. Choose a different one form the calander!</h5>";
@@ -262,7 +286,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 						mysqli_close($connection);
 					?>
 				</div>
-	
+				
 <?php
 include "../html/footer.html";
 ?>

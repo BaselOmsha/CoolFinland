@@ -4,8 +4,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>${sessionScope.readUsersInfo.fname }
-	${sessionScope.readUsersInfo.lname } | Cool Finland</title>
+<title><?php echo  $_SESSION['user']; ?> | Cool Finland</title>
 <link rel="stylesheet" href="../css/profile.css" />
 <link rel="shortcut icon" href="./images/Logo2.png" />
 <link
@@ -18,7 +17,7 @@
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 	<!-- <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
-	<script>
+	<script type="text/javascript">
 			$(function(){
 				$("#delivery_date2").datepicker({
 				
@@ -69,6 +68,7 @@
   			document.getElementById("myform2").submit();
 		}
 
+
 	</script>
 	<style>
 	input:focus {
@@ -80,7 +80,7 @@
 <!-- <%
 session.getAttribute("LoggedUser");
 %> -->
-<body onload="blueBottom(); changeColors();">
+<body onload="blueBottom(); changeColors(); submitform()">
 	<header>
 		<div id="navbar">
 			<div class="logo-left-wrapper">
@@ -93,27 +93,7 @@ session.getAttribute("LoggedUser");
 						<img class="home-button" alt="home button"
 							src="../images/homeIcon.png" Style="height: 20px; width: 20px"
 							onclick="window.location.href='#ty'">
-<!-- 						<%
-						if (session.getAttribute("LoggedUser") != null) {
-							String email = null;
-							String sessionID = null;
-							Cookie[] cookies = request.getCookies();
-							if (cookies != null) {
-								for (int i = 0; i < cookies.length; i++) {
-
-							if (cookies[i].getName().equals("LoggedUser"))
-								email = cookies[i].getValue();
-							if (cookies[i].getName().equals("JSESSIONID"))
-								sessionID = cookies[i].getValue();
-								}
-								/* out.println("Welcome, " + email); */
-							} else {
-								sessionID = session.getId();
-							}
-						} else if (session.getAttribute("LoggedUser") == null) {
-							response.sendRedirect("/index.html");
-						}
-						%> -->
+													
 					</div>
 				</div>
 			</div>
@@ -132,10 +112,10 @@ session.getAttribute("LoggedUser");
 							<img alt="Profile picture" src="../images/avatar.png"
 								Style="height: 25px; width: 36px" onclick="">
 						</div>
-						<!-- ${sessionScope.readUsersInfo.fname }
-						${sessionScope.readUsersInfo.lname } -->
+						<h5><b>Welcome&nbsp;&nbsp; </b></h5>
+						<h4 style="color:green"><?php echo  $_SESSION['user']; ?></h4>
 					</div>
-					<div class="prof-nav-item" onclick="window.location.href='/logout'">
+					<div class="prof-nav-item" onclick="window.location.href='./logout.php'">
 						<div
 							class="main-profile-picture1 profile-button-main1 
 							profile-button-main-pic1"
@@ -143,7 +123,7 @@ session.getAttribute("LoggedUser");
 							<img alt="Profile picture" src="../images/logout.png"
 								Style="height: 35px; width: 36px" onclick="">
 						</div>
-						Log out
+						<h5><b>Log out</b></h5>
 					</div>
 				</div>
 			</div>
@@ -152,6 +132,11 @@ session.getAttribute("LoggedUser");
     <main>
 		
 		<div class="container">
-
+		<div class="char-container">
+		<?php include "./chart.php"; ?>
+		<h1 style="color: white; margin-left:-150px; margin-right:50px">Daily Capacity Dash Board</h1><br>
+		<?php include "./chart2.php"; ?>
+		</div>
 			<div class="content-container">
-				<script src="../js/scripts.js"></script>
+				<!-- <script src="../js/scripts.js"></script> -->
+				

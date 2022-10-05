@@ -45,20 +45,18 @@
 			<div>
 				<div class="Login-container">
 					<!-- <form id="login-form"> -->
-					<form action="./login" method="post">
+					<form id='userForm'>
 						<label for="email"></label> <input class="input-container"
 							type="text" placeholder="Enter Email" name="email" required><br>
 						<label for="paswd"></label> <input class="input-container"
 							type="password" placeholder="Enter Password"
 							autocomplete="current-password" id="paswd" name="paswd"
 							required>
-						<button class="login-button" type="submit">Log In</button>
+						<input class="login-button" value="Log In" type="button" name='submit' onclick='sendInfo(this.form);'>
 						<!-- <input class="login-button" type="button" value="Log in"
 							onclick="loginAjax(this.form);"> -->
 					</form>
 					<a class="form-forgot-password" href="#">Forgot password?</a>
-
-					
 
 				</div>
 	
@@ -78,6 +76,32 @@
 		<p class="text-center text-muted">&copy; 2022 Team1, Cool Finland
 			#Design Factory HAMK</p>
 	</footer>
-	<script src="./js/scripts.js"></script>
+	<script>
+		function sendInfo(form){
+				var user=new Object();
+				user.email=form.email.value;
+				user.paswd=form.paswd.value;
+				var jsonUser=JSON.stringify(user);
+						
+				xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("result").innerHTML = 
+					this.responseText;
+				if (this.responseText=="Error"){
+					document.getElementById("result").innerHTML = 
+					"Username or/and password are wrong";
+						}
+					else{
+						window.location.assign("../php/mainpage.php");
+					}
+				}
+			};
+			xmlhttp.open("POST", "../php/login.php", true);
+			xmlhttp.setRequestHeader("Content-type", 
+			"application/x-www-form-urlencoded");
+			xmlhttp.send("user=" + jsonUser);	
+		}	
+	</script>
 </body>
 </html>
