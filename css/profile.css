@@ -435,7 +435,7 @@ a {
         -1px -1px 4px lightgray, 1px -1px 4px lightgray;
 }
 svg g text{
-	font-size:0.99em;
+	font-size:0.85em;
 	}
 .about-left-column {
 	display: flex;

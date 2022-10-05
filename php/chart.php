@@ -28,7 +28,7 @@ include "../conn/conn.php";
         } 
 
         while($row = mysqli_fetch_assoc($print)) {
-          echo "['N/A Cap out of 50t', " . $row["total_required"] - $row["total_weight"] . "],";
+          echo "['Availabe cap out of 50t', " . $row["total_required"] - $row["total_weight"] . "],";
           // echo "['Reserved. in tons', " . $row["total_count"] . "],";
         } 
 

@@ -278,7 +278,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 					<?php } 
 						if ($count2==0){ 
 							echo"</br>";
-							echo "<h3 style='color:red'>Select a company from the list of deliveries on the left columns.</h3>";
+							echo "<h3 style='color:red'>Select a company from the list of deliveries on the left.</h3>";
 						}
 						// } catch (Exception $e) {
 						// 	print "Error";

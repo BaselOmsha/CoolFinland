@@ -28,7 +28,7 @@ include "../conn/conn.php";
 
             while($row = mysqli_fetch_assoc($print)) {
             // echo "['Available Capacity out of 50T', " . $row["total_required"] - $row["total_count"] . "],";
-            echo "['Clients Reserved. in tons', " . $row["total_weight"] . "],";
+            echo "['Reserved by clients. in tons', " . $row["total_weight"] . "],";
             } 
 
             ?>
