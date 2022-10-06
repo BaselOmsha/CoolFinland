@@ -68,7 +68,7 @@ try {
 	// echo	$print;
 	echo				"</h4>";
 	echo			"</div>";
-echo	"<table >";
+echo	"<table style='width:100%'>";
 echo		"<tr>";
 echo "<th  style='color: #000000'><b><h7>Company Name&nbsp;</h7></b></th>";
 echo	"<th style='color:#ffffff'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
@@ -93,6 +93,8 @@ echo				"<td><input style='color:red' class='newInput' type='text' id='' name='d
 	
 	
 	echo			"<td><button id='myBtn' class='comp-select-button' type='submit'>Select</button></td>";
+	
+
 echo			"</form>";
 echo		"</div>";
 						}  
@@ -104,7 +106,7 @@ echo	"</table>";
 				echo "<h5 style='color:red'>No deliveries found on the selected date. Choose a different one form the calander!</h5>";
 			}
 
-			 
+
 
 } catch (Exception $e) {
 	print "Error";
@@ -134,9 +136,14 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 					<?php while($row2 = mysqli_fetch_object($print2)) {?>
 						<?php $count2++;?>
 						<div class="info-header">
-							<h4 style="color: #000000">Delivery details</h4>
+							<h4 style="color: #000000">Delivery details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+							<div class="circleDiv-base2 circletype2" id="editNappi">
+								<?php $row2->delivery_id;?>
+								<img alt="add cover picture" src="../images/pen.png"
+									Style="height: 20px; width: 20px">
+							</div>
 						</div>
-
 						<div class= "rowContainer">
 							<div class="contact-info-container">
 								<div class="contact-info">
@@ -189,7 +196,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 							<div></div>
 							<div class="contact-info-container">
 								<div class="contact-info">
-									<img alt="add cover picture" src="../images/nameIcon.png"
+									<img alt="add cover picture" src="../images/icons8-calendar-13-96.png"
 										Style="height: 25px; width: 25px"> &nbsp;&nbsp;&nbsp;
 									<p style="color: #000000"><?php echo $row2->delivery_date;?></p>
 								</div>
@@ -208,7 +215,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 						<div class= "rowContainer">
 							<div class="contact-info-container">
 								<div class="contact-info">
-									<img alt="add cover picture" src="../images/nameIcon.png"
+									<img alt="add cover picture" src="../images/external-count-election-outline-wichaiwi.png"
 									Style="height: 25px; width: 25px"> &nbsp;&nbsp;&nbsp;
 								<p style="color: #000000"><?php echo $row2->container_amount;?></p>
 								</div>
@@ -224,7 +231,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 							<div></div>
 							<div class="contact-info-container">
 								<div class="contact-info">
-									<img alt="add cover picture" src="../images/nameIcon.png"
+									<img alt="add cover picture" src="../images/icons8-weight-100.png"
 										Style="height: 25px; width: 25px"> &nbsp;&nbsp;&nbsp;
 									<p style="color: #000000"><?php echo $row2->delivery_weight;?></p>
 								</div>
@@ -243,7 +250,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 						<div class= "rowContainer">
 							<div class="contact-info-container">
 								<div class="contact-info">
-									<img alt="add cover picture" src="../images/nameIcon.png"
+									<img alt="add cover picture" src="../images/external-status-computer-programming-icons-flaticons-lineal-color-flat-icons.png"
 										Style="height: 25px; width: 25px"> &nbsp;&nbsp;&nbsp;
 									<p style="color: #000000"><?php echo $row2->delivery_status;?></p>
 								</div>
@@ -259,7 +266,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 							<div></div>
 							<div class="contact-info-container">
 								<div class="contact-info">
-									<img alt="add cover picture" src="../images/nameIcon.png"
+									<img alt="add cover picture" src="../images/icons8-info-96.png"
 										Style="height: 25px; width: 25px"> &nbsp;&nbsp;&nbsp;
 									<p style="color: #000000"><?php echo $row2->more_info;?></p>
 								</div>
@@ -278,7 +285,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 						<div class= "rowContainer">
 							<div class="contact-info-container">
 								<div class="contact-info">
-									<img alt="add cover picture" src="../images/nameIcon.png"
+									<img alt="add cover picture" src="../images/icons8-transportation-96.png"
 										Style="height: 25px; width: 25px"> &nbsp;&nbsp;&nbsp;
 									<p style="color: #000000"><?php echo $row2->Transport_method;?></p>
 								</div>
@@ -292,6 +299,12 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 							</div>
 						</div>	
 					</div>
+					<script type="text/javascript">
+					document.getElementById("editNappi").onclick = function () {
+						location.href = "#/<?php $row2->delivery_id;?>";
+					};
+				</script>
+				
 					<?php } 
 						if ($count2==0){ 
 							echo"</br>";
@@ -303,7 +316,7 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 						mysqli_close($connection);
 					?>
 				</div>
-				
+	
 <?php
 include "../html/footer.html";
 ?>
