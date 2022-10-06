@@ -28,7 +28,7 @@ include "../conn/conn.php";
         } 
 
         while($row = mysqli_fetch_assoc($print)) {
-          echo "['Availabe cap out of 50t', " . $row["total_required"] - $row["total_weight"] . "],";
+          echo "['Availabe daily cap out of 50t', " . $row["total_required"] - $row["total_weight"] . "],";
           // echo "['Reserved. in tons', " . $row["total_count"] . "],";
         } 
 
@@ -40,8 +40,8 @@ include "../conn/conn.php";
           greenFrom: 40, greenTo: 50,
           redFrom: 0, redTo: 5,
           yellowFrom: 5, yellowTo:15,
-          minorTicks: 10
-          
+          minorTicks: 10,
+          max:50,
         };
 
         var chart = new google.visualization.Gauge(document.getElementById('chart_div1'));

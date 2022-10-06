@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
-    $_SESSION["returnSite"] = "/php/mainpage.php";
+    $_SESSION["returnSite"] = "/php/searchBydate.php";
     header("Location:../index.html");
     exit();
 }
@@ -25,7 +25,7 @@ include "./header.php";
 			
 			
 			<!-- <form id="myform"> -->
-			<form id="myform" name="contact-form" action='mainpage.php' method='post'style="background-color:#ffffff;margin-right:20px">
+			<form id="myform" name="contact-form" action='searchBydate.php' method='post'style="background-color:#ffffff;margin-right:20px">
 
 			<input type="text" onblur="this.focus()" autofocus id="delivery_date2" name="delivery_date" value="" 
 			placeholder="" required style="visibility:visible; border:none; color:#ffffff;" />
@@ -68,11 +68,11 @@ try {
 	// echo	$print;
 	echo				"</h4>";
 	echo			"</div>";
-echo	"<table>";
+echo	"<table >";
 echo		"<tr>";
 echo "<th  style='color: #000000'><b><h7>Company Name&nbsp;</h7></b></th>";
-echo	"<th style='color:#ffffff'>sssss&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
-echo "<th  style='color: #000000'><b><h7>&nbsp; Delivery Status</h7></b></th>";
+echo	"<th style='color:#ffffff'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>";
+echo "<th  style='color: #000000'><b><h7>Delivery Status</h7></b></th>";
 echo		"</tr>";
 $count=0;
 			while($row = mysqli_fetch_object($print)) { //return the row of result as an object
@@ -80,7 +80,7 @@ $count++;
 echo		"<tr>";
 // echo		"<div class='left-columns-buttons' href='#' id='overviewQ'>";
 echo		 "<br>";
-echo			"<form id='myform2' name='form2' action='mainpage.php' method='post'>";
+echo			"<form id='myform2' name='form2' action='searchBydate.php' method='post'>";
 echo			"<td><input style='background-color:#dddddd' class='newInput' type='text' id='' name='company_name' value='$row->company_name'
 						placeholder='' onclick='changeColors(); Form2()' required  readonly/></td>";
 echo				"<td><input style='color:red' class='newInput' type='text' id='' name='delivery_id' value='$row->delivery_id'
@@ -121,7 +121,7 @@ echo		"</div>";
  $comp_id = isset($_POST["company_id"]) ? $_POST["company_id"] : "";
  $delivery_id = isset($_POST["delivery_id"]) ? $_POST["delivery_id"] : "";
 // select from database 
-$sql2 = "select delivery_id, company_id, company_name, delivery_date, container_amount, delivery_weight, delivery_status, more_info from deliveries where delivery_id=?";
+$sql2 = "select delivery_id, company_id, company_name, delivery_date, container_amount, delivery_weight, delivery_status, Transport_method, more_info from deliveries where delivery_id=?";
 // try {
 	$stmt2 = mysqli_prepare($connection, $sql2);
 	mysqli_stmt_bind_param($stmt2, 's', $delivery_id);
@@ -273,6 +273,23 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 							</div>
 
 							<div></div>
+						</div>	
+						<br>
+						<div class= "rowContainer">
+							<div class="contact-info-container">
+								<div class="contact-info">
+									<img alt="add cover picture" src="../images/nameIcon.png"
+										Style="height: 25px; width: 25px"> &nbsp;&nbsp;&nbsp;
+									<p style="color: #000000"><?php echo $row2->Transport_method;?></p>
+								</div>
+								<!-- <div class="circleDiv-base2 circletype2" onclick="editName()">
+									<img alt="add cover picture" src="../images/pen.png"
+										Style="height: 20px; width: 20px">
+								</div> -->
+								<div class="info-tag">
+								<p>Transportation method</p>
+							</div>
+							</div>
 						</div>	
 					</div>
 					<?php } 

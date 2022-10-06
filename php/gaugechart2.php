@@ -27,7 +27,7 @@ include "../conn/conn.php";
             } 
 
             while($row = mysqli_fetch_assoc($print)) {
-            // echo "['Available Capacity out of 50T', " . $row["total_required"] - $row["total_count"] . "],";
+            // echo "['Available capacity out of 50T', " . $row["total_required"] - $row["total_count"] . "],";
             echo "['Reserved by clients. in tons', " . $row["total_weight"] . "],";
             } 
 
@@ -39,11 +39,13 @@ include "../conn/conn.php";
             redFrom: 45, redTo: 50,
             yellowFrom:35, yellowTo: 45,
             greenFrom: 0, greenTo:10,
-            minorTicks: 10
+            minorTicks: 10,
+            max:50
             };
-
+   
             var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
             chart.draw(data, options);
+
             }
 </script>
             <div id="chart_div"></div>
