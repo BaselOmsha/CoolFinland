@@ -11,9 +11,9 @@
 <body>
 
 <?php
-//include "connection.php";
+include "./connection.php";
 
-$con = mysqli_connect("db","root","password","coolFinland") or die("Connection failed!");
+// $con = mysqli_connect("db","root","password","coolFinland") or die("Connection failed!");
 $sql = "SELECT * from deliveries";
 
 //$sql = "select delivery_id, company_id, company_name, delivery_date, container_amount, delivery_weight, delivery_status, site_maximum_capacity_t, more_info from deliveries where delivery_id=?";
@@ -41,14 +41,17 @@ $output = mysqli_fetch_assoc($result);
       <label for="">Weight:</label>
       <span><?php echo $output['delivery_weight']?></span><br>
 
+      <label for="">Trasportation method:</label>
+      <span><?php echo $output['Transport_method']?></span><br>
+
       <label for="">Status:</label>
-      <span><?php echo $output['delivery_status']?></span>
+      <span><?php echo $output['delivery_status']?></span><br>
 
       <label for="">Max capacity:</label>
-      <span><?php echo $output['site_maximum_capacity_t']?></span>
+      <span><?php echo $output['site_maximum_capacity_t']?></span><br>
 
       <label for="">More info:</label>
-      <span><?php echo $output['more_info']?></span>
+      <span><?php echo $output['more_info']?></span><br>
 
   </div>
 </body>

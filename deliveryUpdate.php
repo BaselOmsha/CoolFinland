@@ -11,11 +11,21 @@
 <body>
 
     <?php
-    $con = mysqli_connect("db", "root", "password", "coolFinland") or die ("Connection failed!");
-    $sql = "SELECT * from deliveries";
-    $result = mysqli_query($con,$sql) or die("Record failed to save");
-    $output = mysqli_fetch_assoc($result);
-
+    include "./connection.php";
+    // $con = mysqli_connect("db", "root", "password", "coolFinland") or die ("Connection failed!");
+    // $sql = "SELECT * from deliveries";
+    // $result = mysqli_query($con,$sql) or die("Record failed to save");
+    // $output = mysqli_fetch_assoc($result);
+    $delivery = 1;
+    $sql = "select * from deliveries where delivery_id=?";
+    $stmt = mysqli_prepare($con, $sql); //Prepare statment prevent sql injection. Highly recommended!
+    mysqli_stmt_bind_param($stmt, 'i', $delivery);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+   if (!$output = mysqli_fetch_object($result)) {
+        echo "Something is wrong!!!";
+        exit();
+    }
     ?>
 
 <div class="container">
@@ -28,134 +38,63 @@
             </div>
             <div class="card-body">
 
-                <form action="submit.php" method="POST" enctype="multipart/form-data">
-                   <select class= "" name="">
+                <form action="./submit.php" method="POST" enctype="multipart/form-data">
+                   <!-- <select class= "" name="">
                        <option value= "delivery_id" disabled> SELECT A Value</option>
-                       <option value= '<?php echo $output['delivery_id']?>'>1 </option>
-                   </select>
+                       <option value= '</option>
+                    </select>     -->
+                       <div class= delivery_id>
+                        <label for="">Delivery Id</label>
+                        <input type="number" name="delivery_id" class="form-control" value='<?php print $output->delivery_id;?>' readonly>
+                        </div>
+                   
                         <div class= company_id>
                         <label for="">Company Id</label>
-                        <input type="number" name="company_id" class="form-control" value='<?php echo $output['company_id']?>' >
+                        <input type="number" name="company_id" class="form-control" value='<?php print $output->company_id;?>' readonly>
                         </div>
                         <div class= company_name>
                         <label for="">Company name</label>
-                        <input type="text" name="company_name" class="form-control" value='<?php echo $output['company_name']?>' >
+                        <input type="text" name="company_name" class="form-control" value='<?php print $output->company_name;?>' readonly>
                         </div>
                         <div class= delivery_date>
                         <label for="">Delivery date</label>
-                        <input type="date" name="delivery_date" class="form-control" value='<?php echo $output['delivery_date']?>' >
+                        <input type="date" name="delivery_date" class="form-control" value='<?php print $output->delivery_date;?>' >
                         </div>
                         <div class= container_amount>
                         <label for="">Container amount</label>
-                        <input type="number" name="container_amount" class="form-control" value='<?php echo $output['container_amount']?>' >
+                        <input type="number" name="container_amount" class="form-control" value='<?php print $output->container_amount;?>' >
                         </div>
                         <div class= delivery_weight>
                         <label for="">Delivery weight</label>
-                        <input type="number" name="delivery_weight" class="form-control" value='<?php echo $output['delivery_weight']?>' >
+                        <input type="number" step="0,01" name="delivery_weight" class="form-control" value='<?php print $output->delivery_weight;?>' >
+                        </div>
+                        <div class= Transport_method>
+                        <label for="">Trasporation Method</label>
+                        <input type="text" name="Transport_method" class="form-control" value='<?php print $output->Transport_method;?>' >
                         </div>
                         <div class= delivery_status>
                         <label for="">Delivery status</label>
-                        <input type="text" name="delivery_status" class="form-control" value='<?php echo $output['delivery_status']?>' >
+                        <input type="text" name="delivery_status" class="form-control" value='<?php print $output->delivery_status;?>' >
                         </div>
                         <div class= site_maximum_capacity_t>
                         <label for="">Max capacity</label>
-                        <input type="number" name="site_maximum_capacity_t" class="form-control" value='<?php echo $output['site_maximum_capacity_t']?>' >
+                        <input type="number" name="site_maximum_capacity_t" class="form-control" value='<?php print $output->site_maximum_capacity_t;?>' >
                         </div>
                         <div class= more_info>
                         <label for="">More Info</label>
-                        <input type="text" name="more_info" class="form-control" value='<?php echo $output['more_info']?>' >
+                        <input type="text" name="more_info" class="form-control" value='<?php print $output->more_info;?>' >
                         </div>
                         <div class="form-group mb-3">
-                        <button type="submit" name="update_stud_data" class="btn btn-primary">Update Data</button>
+                        <input type='submit' name='submit' value='Update Data' class="btn btn-primary">
                     </div> 
-
- <!--                   <div class="company_id">
-                       <option value= "" disabled> SELECT A Value</option>
-                       <option value= '<#?php echo $output['company_id']?>'> </option>
-                   </div>
-                   <div class="company_name">
-                       <option value= "" disabled> SELECT A Value</option>
-                       <option value= '<#?php echo $output['company_name']?>'> </option>
-                   </div>
-                   <div class="delivery_date">
-                       <option value= "" disabled> SELECT A Value</option>
-                       <option value= '<#?php echo $output['delivery_date']?>'> </option>
-                   </div>
-                   <div class="container_amount">
-                       <option value= "" disabled> SELECT A Value</option>
-                       <option value= '<#?php echo $output['container_amount']?>'> </option>
-                   </div>
-                   <div class="delivery_weight">
-                       <option value= "" disabled> SELECT A Value</option>
-                       <option value= '<#?php echo $output['delivery_weight']?>'> </option>
-                   </div>
-                   <div class="delivery_status">
-                       <option value= "" disabled> SELECT A Value</option>
-                       <option value= '<#?php echo $output['delivery_status']?>'> </option>
-                   </div>
-                   <div class="site_maximum_capacity_t">
-                       <option value= "" disabled> SELECT A Value</option>
-                       <option value= '<#?php echo $output['site_maximum_capacity_t']?>'> </option>
-                   </div>
-                   <div class="form-control">
-                       <option value= "" disabled> SELECT A Value</option>
-                       <option value= '<#?php echo $output['form-control']?>'> </option>
-                   </div>
-                   <div class="form-group mb-3">
-                        <button type="submit" name="update_stud_data" class="btn btn-primary">Update Data</button>
-                    </div> 
-                    -->
-                   
-
-                   
-                   <!--  <div class="form-group mb-3">
-                        <label for="">Delivery ID</label>
-                        <input type="number" name="delivery_id" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="">Comapany Id</label>
-                        <input type="number" name="company_id" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="">Company name</label>
-                        <input type="text" name="company_name" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="">Delivery date</label>
-                        <input type="date" name="delivery_date" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="">Container amount</label>
-                        <input type="number" name="container_amount" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="">Delivery weight</label>
-                        <input type="number" name="delivery_weight" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="">Delivery status</label>
-                        <input type="text" name="delivery_status" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="">Max capacity</label>
-                        <input type="number" name="site_maximum_capacity_t" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="">More info</label>
-                        <input type="text" name="more_info" class="form-control" >
-                    </div>
-                    <div class="form-group mb-3">
-                        <button type="submit" name="update_stud_data" class="btn btn-primary">Update Data</button>
-                    </div> -->
                     </form>
-
+                    <?php
+                    mysqli_close($con);
+                    ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
