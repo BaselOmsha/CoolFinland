@@ -12,10 +12,6 @@
 
     <?php
     include "../conn/conn.php";
-    // $con = mysqli_connect("db", "root", "password", "coolFinland") or die ("Connection failed!");
-    // $sql = "SELECT * from deliveries";
-    // $result = mysqli_query($con,$sql) or die("Record failed to save");
-    // $output = mysqli_fetch_assoc($result);
     $delivery = 1;
     $sql = "select * from deliveries where delivery_id=?";
     $stmt = mysqli_prepare($connection, $sql); //Prepare statment prevent sql injection. Highly recommended!
