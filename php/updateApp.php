@@ -1,8 +1,7 @@
-
 <?php
-
   include "../conn/conn.php";
-
+?>
+<?php 
   $delivery_id = isset($_POST["delivery_id"]) ? $_POST["delivery_id"] : "";
   $company_id = isset($_POST["company_id"]) ? $_POST["company_id"] : "";
   $company_name = isset($_POST["company_name"]) ? $_POST["company_name"] : "";
@@ -21,15 +20,21 @@ if (empty($delivery_id) || empty($company_id) || empty($company_name) || empty($
 }
 
 $sql2 =  "update deliveries set delivery_date=?, container_amount=?, delivery_weight=?, Transport_method=?, delivery_status=?, site_maximum_capacity_t=?, more_info=?  where delivery_id=?";
-$stmt = mysqli_prepare($con, $sql2);
+$stmt = mysqli_prepare($connection, $sql2);
     // assign the variables to their right place
     mysqli_stmt_bind_param($stmt, 'siissisi', $delivery_date, $container_amount, $delivery_weight, $Transport_method, $delivery_status, $site_maximum_capacity_t, $more_info, $delivery_id);
     // execute the sql phrase above
-    echo "test1";
+
     mysqli_stmt_execute($stmt);
     // closing the connection
-    echo "test2";
-    mysqli_close($con);
-    echo "test3";
-  
-?>
+
+    mysqli_close($connection);
+    header("Refresh:2.5; url=./searchBydate.php");
+    include "./header.php";
+    echo "<div class='sec' style='color: green'>";
+    echo "<h1>Updating...</h1><br>";
+    echo "<br>";
+    echo "<h1>Please wait!</h1>";
+    echo "</div>";
+    include "../html/footer.html";
+    ?>

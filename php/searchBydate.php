@@ -1,4 +1,6 @@
 <?php
+header("Cache-Control: no cache");
+session_cache_limiter("private_no_expire");
 session_start();
 if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
     $_SESSION["returnSite"] = "/php/searchBydate.php";
@@ -124,7 +126,7 @@ echo		"</div>";
  $delivery_id = isset($_POST["delivery_id"]) ? $_POST["delivery_id"] : "";
 // select from database 
 $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_amount, delivery_weight, delivery_status, Transport_method, more_info from deliveries where delivery_id=?";
-// try {
+try {
 	$stmt2 = mysqli_prepare($connection, $sql2);
 	mysqli_stmt_bind_param($stmt2, 's', $delivery_id);
 	mysqli_stmt_execute($stmt2);
@@ -136,12 +138,12 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 					<?php while($row2 = mysqli_fetch_object($print2)) {?>
 						<?php $count2++;?>
 						<div class="info-header">
-							<h4 style="color: #000000">Delivery details &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-							<div class="circleDiv-base2 circletype2" id="editNappi">
-								<?php $row2->delivery_id;?>
-								<img alt="add cover picture" src="../images/pen.png"
+							<h4 style="color: #000000; margin-left:50px">Delivery details </h4>
+							<div class="circleDiv-base2 circletype2" id="editNappi" style="margin-left:500px">
+								<a href="./updateForm.php?edit=<?php echo $row2->delivery_id?>">
+									<img alt="add cover picture" src="../images/pen.png"
 									Style="height: 20px; width: 20px">
+								</a>		
 							</div>
 						</div>
 						<div class= "rowContainer">
@@ -310,9 +312,9 @@ $sql2 = "select delivery_id, company_id, company_name, delivery_date, container_
 							echo"</br>";
 							echo "<h3 style='color:red'>Select a company from the list of deliveries on the left.</h3>";
 						}
-						// } catch (Exception $e) {
-						// 	print "Error";
-						// } 	
+						} catch (Exception $e) {
+							print "Error";
+						} 	
 						mysqli_close($connection);
 					?>
 				</div>
