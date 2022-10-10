@@ -93,11 +93,11 @@
 					"Username or/and password are wrong";
 						}
 					else{
-						window.location.assign("./main.php#first");
+						window.location.assign("../main.php#first");
 					}
 				}
 			};
-			xmlhttp.open("POST", "./php/login.php", true);
+			xmlhttp.open("POST", "../php/login.php", true);
 			xmlhttp.setRequestHeader("Content-type", 
 			"application/x-www-form-urlencoded");
 			xmlhttp.send("user=" + jsonUser);	

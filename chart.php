@@ -16,7 +16,7 @@
         <?php
         #the chart code is in the header  thats how we get it in html body <div id="piechart" style="width: 900px; height: 500px;"></div>
 
-        include './conn/conn.php';
+        include '../conn/conn.php';
 
         $mysql = "SELECT SUM(container_amount) as total_count, 20 total_required FROM deliveries where delivery_date = curdate() ";
 

@@ -4,7 +4,7 @@ session_cache_limiter("private_no_expire");
 session_start();
 if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
     $_SESSION["returnSite"] = "./main.php#first";
-    // header("Location:../index.html");
+    header("Location:./index.html");
     exit();
 }
 ?>
@@ -12,7 +12,7 @@ if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login
 <?php
 #curdate() to show today date only
 
-include './conn/conn.php';
+include '../conn/conn.php';
 
 $mysql = "select * from deliveries  where delivery_date = curdate() ";
 
