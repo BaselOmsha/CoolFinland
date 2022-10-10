@@ -18,7 +18,7 @@ try {
     $print = mysqli_stmt_get_result($stmt);
     if ($row = mysqli_fetch_object($print)) { //return the row of result as an object
         $_SESSION["user"] = "$row->name"; //show user's username when logged in 
-        print $_SESSION["returnSite"]="./php/searchBydate.php";
+        print $_SESSION["returnSite"]="./main.php#first";
         exit();
     } else
         print "Invalid username or password!";

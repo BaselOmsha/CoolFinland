@@ -1,3 +1,14 @@
+<?php
+header("Cache-Control: no cache");
+session_cache_limiter("private_no_expire");
+session_start();
+if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
+    $_SESSION["returnSite"] = "./main.php#first";
+    header("Location:../index.html");
+    exit();
+}
+?>
+
 
 <?php
 #curdate() to show today date only
@@ -21,7 +32,7 @@ if ($result->num_rows > 0) {
   
 
 
-  <title>Document</title>
+  <title><?php echo  $_SESSION['user']; ?> | Cool Finland</title>
   <style>
 * {
   margin: 0;
@@ -133,6 +144,8 @@ section:target h1 {
 
     <div class="container">
     <div class="tnt">
+        <h5><b>Welcome&nbsp;&nbsp; </b></h5>
+		<h4 style="color:green"><?php echo  $_SESSION['user']; ?></h4>
         <div class="col1">
 
         <input type="text" class="input" id="myInput" onkeyup='tableSearch()' placeholder="Search by name..">

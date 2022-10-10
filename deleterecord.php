@@ -17,7 +17,7 @@ $delivery_id = $_GET['delivery_id'];
 $sql = "DELETE FROM deliveries WHERE delivery_id='" . $delivery_id . "'";
 
 if ($conn->query($sql) === TRUE) {
-    header("Location: main.php");
+    header("Location: main.php#first");
 } else {
     echo "Error deleting record: " . $conn->error;
 }
