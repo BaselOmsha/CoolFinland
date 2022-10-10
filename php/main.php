@@ -1,10 +1,8 @@
 <?php
-header("Cache-Control: no cache");
-session_cache_limiter("private_no_expire");
 session_start();
-if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
-    $_SESSION["returnSite"] = "./main.php#first";
-    header("Location:./index.html");
+if (!isset($_SESSION["name"])) { // if session is not set, go to the admin login page
+    // $_SESSION["returnSite"] = "./main.php#first";
+    header("Location:../index.html");
     exit();
 }
 ?>
@@ -31,7 +29,7 @@ if ($result->num_rows > 0) {
   
 
 
-  <title><?php echo  $_SESSION['user']; ?> | Cool Finland</title>
+  <title><?php echo  $_SESSION['name']; ?> | Cool Finland</title>
   <style>
 * {
   margin: 0;
@@ -132,8 +130,8 @@ section:target h1 {
 <body>
 <nav>
    <a href="#first"><i class="fa fa-home fa-fw"></i></a>
-   <a href="#second"><i class="fa fa-search" aria-hidden="true" onclick="window.location.href='./php/searchBydate.php'"></i></a>
-   <a href="#third"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+   <a href="#second"><i class="fa fa-search" aria-hidden="true" onclick="window.location.href='searchBydate.php'"></i></a>
+   <a href="#third"><i class="fa fa-sign-out" aria-hidden="true"onclick="window.location.href='./logout.php'"></i></a>
 
  </nav>
   
@@ -144,7 +142,7 @@ section:target h1 {
     <div class="container">
     <div class="tnt">
         <h5><b>Welcome&nbsp;&nbsp; </b></h5>
-		<h4 style="color:green"><?php echo  $_SESSION['user']; ?></h4>
+		<h4 style="color:green"><?php echo  $_SESSION['name']; ?></h4>
         <div class="col1">
 
         <input type="text" class="input" id="myInput" onkeyup='tableSearch()' placeholder="Search by name..">

@@ -85,18 +85,15 @@
 						
 				xmlhttp = new XMLHttpRequest();
 				xmlhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					document.getElementById("result").innerHTML = 
-					this.responseText;
-				if (this.responseText=="Error"){
-					document.getElementById("result").innerHTML = 
-					"Username or/and password are wrong";
+					if (this.readyState == 4 && this.status == 200) {
+						if (this.responseText=="ok"){
+							window.location.assign("../php/main.php#first");
 						}
-					else{
-						window.location.assign("../main.php#first");
+						else{
+							document.getElementById("result").innerHTML = this.responseText;
+						}
 					}
-				}
-			};
+				};
 			xmlhttp.open("POST", "../php/login.php", true);
 			xmlhttp.setRequestHeader("Content-type", 
 			"application/x-www-form-urlencoded");

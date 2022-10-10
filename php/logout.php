@@ -1,8 +1,7 @@
 <?php
 session_start();
-unset($_SESSION["user"]);
-session_destroy();  
-unset($_SESSION["returnSite"]);
-session_destroy();  
+unset($_SESSION["user"]); 
+unset($_SESSION["name"]);
+session_destroy(); 
 header("Location:../index.html");
 ?> 
