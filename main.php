@@ -261,8 +261,10 @@ section:target h1 {
   </section>
   
   <section id= 'second'>
-    <h1>Second</h1>
-    
+    <?php
+
+    include './searchBydate.php';
+    ?>
   </section>
   
  <section id= 'third'>
