@@ -7,8 +7,9 @@ if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login
     header("Location:../index.html");
     exit();
 }
-include "../conn/conn.php";
 include "./header.php";
+include "../conn/conn.php";
+
 ?>
 	<div class="calander-container">
 		<div class="about-left-column" id="about-left-column" style="visibility: visibale">

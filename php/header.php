@@ -92,7 +92,7 @@ session.getAttribute("LoggedUser");
 					<div class="wrap2">
 						<img class="home-button" alt="home button"
 							src="../images/homeIcon.png" Style="height: 20px; width: 20px"
-							onclick="window.location.href='#ty'">
+							onclick="window.location.href='../main.php#first'">
 													
 					</div>
 				</div>

@@ -4,20 +4,19 @@ session_cache_limiter("private_no_expire");
 session_start();
 if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
     $_SESSION["returnSite"] = "./main.php#first";
-    header("Location:../index.html");
+    // header("Location:../index.html");
     exit();
 }
 ?>
 
-
 <?php
 #curdate() to show today date only
 
-include 'conn.php';
+include './conn/conn.php';
 
 $mysql = "select * from deliveries  where delivery_date = curdate() ";
 
-$result = $conn->query($mysql);
+$result = $connection->query($mysql);
 if ($result->num_rows > 0) {
 }
 
@@ -133,7 +132,7 @@ section:target h1 {
 <body>
 <nav>
    <a href="#first"><i class="fa fa-home fa-fw"></i></a>
-   <a href="#second"><i class="fa fa-search" aria-hidden="true"></i></a>
+   <a href="#second"><i class="fa fa-search" aria-hidden="true" onclick="window.location.href='./php/searchBydate.php'"></i></a>
    <a href="#third"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
 
  </nav>
@@ -213,7 +212,7 @@ section:target h1 {
             ?>
         </table>
         <?php
-        $result = mysqli_query($conn, 'SELECT SUM(container_amount) AS value_sum FROM deliveries where delivery_date = curdate()  ');
+        $result = mysqli_query($connection, 'SELECT SUM(container_amount) AS value_sum FROM deliveries where delivery_date = curdate()  ');
         $row = mysqli_fetch_assoc($result);
         $sum = $row['value_sum'];
         echo 'Capacity: ', $sum = $row['value_sum'];
@@ -261,14 +260,10 @@ section:target h1 {
   </section>
   
   <section id= 'second'>
-    <?php
-
-    include './searchBydate.php';
-    ?>
   </section>
   
  <section id= 'third'>
-   <h1>Third</h1>
+            <?php require '../main.php#first'; ?>
   </section>
   
  <section id= 'fourth'>
