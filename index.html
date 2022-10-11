@@ -87,7 +87,7 @@
 				xmlhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
 						if (this.responseText=="ok"){
-							window.location.assign("../php/searchBydate.php");
+							window.location.assign("../php/main.php");
 						}
 						else{
 							document.getElementById("result").innerHTML = this.responseText;

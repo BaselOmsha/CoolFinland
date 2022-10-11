@@ -1,13 +1,18 @@
 <?php
 #curdate() to show today date only
-
-include 'conn.php';
+session_start();
+if (!isset($_SESSION["name"])) { // if session is not set, go to the admin login page
+    // $_SESSION["returnSite"] = "/php/searchBydate.php";
+    header("Location:../index.html");
+    exit();
+}
+include '../conn/conn.php';
 include 'chart.php';
 
 
 $mysql = "select * from deliveries where delivery_date = curdate() ";
 
-$result = $conn->query($mysql);
+$result = $connection->query($mysql);
 if ($result->num_rows > 0) {
 }
 
@@ -20,7 +25,7 @@ if ($result->num_rows > 0) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo  $_SESSION['user']; ?> | Cool Finland</title>
+    <title><?php echo  $_SESSION['name']; ?> | Cool Finland</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <script src="./scripts.js"></script>
     <link
@@ -29,7 +34,23 @@ if ($result->num_rows > 0) {
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
-
+<script>
+  function expandWindow() {
+    var x = document.getElementById("profile-info-container");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+//When user clicks somewhere else info box disapears
+document.addEventListener('mouseup', function(e) {
+    var container = document.getElementById('profile-info-container');
+    if (!container.contains(e.target)) {
+        container.style.display = 'none';
+    }
+});
+</script>
 <style>
 @charset "UTF-8";
 
@@ -260,26 +281,26 @@ tr:hover {
 }
 </style>
 
-<body>
+<body onload="blueBottom(); changeColors(); submitform()">
 
     <header>
         <div id="navbar">
-			<div class="logo-left-wrapper">
+        <div class="logo-left-wrapper">
 				<a href="#ty"> <img class="home-button" alt="home button"
-					#src="../images/Logo2.png" Style="height: 35px; width: 35px"></a>
+					src="../images/coolFinLogo.png" Style="height: 35px; width: 35px"></a>
 			</div>
 			<div class="center-topnav">
 				<div class="wrap">
 					<div class="wrap2">
 						<img class="home-button" alt="home button"
 							src="../images/homeIcon.png" Style="height: 20px; width: 20px"
-							onclick="window.location.href='#ty'">
+							onclick="window.location.href='main.php'">
 													
 					</div>
                     <div class="wrap2">
 						<img class="home-button" alt="calendar button"
 							src="../images/calendar.png" Style="height: 28px; width: 28px"
-							onclick="window.location.href='#ty'">
+							onclick="window.location.href='searchBydate.php'">
 													
 					</div>
 				</div>
@@ -300,7 +321,7 @@ tr:hover {
 								Style="height: 25px; width: 36px" onclick="">
 						</div>
 						<h5><b>Welcome&nbsp;&nbsp; </b></h5>
-                        <h4 style="color:green"><?php echo  $_SESSION['user']; ?></h4>
+                        <h4 style="color:green"><?php echo  $_SESSION['name']; ?></h4>
 					</div>
 					<div class="prof-nav-item" onclick="window.location.href='./logout.php'">
 						<div
@@ -327,49 +348,61 @@ tr:hover {
 
         <div>
 
-            <input type="text" class="input" id="myInput" onkeyup='tableSearch()' placeholder="Search by name..">
+        <input type="text" class="input" id="myInput" onkeyup='tableSearch()' placeholder="Search by name..">
 
-            <table class="table  " id="myTable">
-                <tr style="border:solid; ">
-                    <th>Delivery_ID</th>
-                    <th>Company_ID</th>
-                    <th>Company_name</th>
-                    <th>Delivery_date</th>
-                    <th>Container_amount</th>
-                    <th>Delivery_weight</th>
-                    <th>Delivery_status</th>
-                    <th>Site_max_capacity(tons)</th>
-                    <th>More_info</th>
-                </tr>
+<table class="table  " id="myTable">
+    <tr style="border:solid; ">
+        <th>delivery_id</th>
+        <th>company_id</th>
+        <th>company_name</th>
+        <th>delivery_date</th>
+        <th>container_amount</th>
+        <th>delivery_weight</th>
+        <th>Transport_method</th>
+        <th>delivery_status</th>
+        <th>More info</th>
+        <th>delete</th>
 
-                <?php
-                #start of while loop
-                while ($row = mysqli_fetch_assoc($result)) {
 
-                    $delivery_id = $row['delivery_id'];
-                    $company_id = $row['company_id'];
-                    $company_name = $row['company_name'];
-                    $delivery_date = $row['delivery_date'];
-                    $container_amount = $row['container_amount'];
-                    $delivery_weight = $row['delivery_weight'];
-                    $delivery_status = $row['delivery_status'];
-                    $site_maximum_capacity_t = $row['site_maximum_capacity_t'];
-                    $more_info = $row['more_info'];
 
-                ?>
 
-                    <tr>
+    </tr>
 
-                        <td><?php echo $row['delivery_id'];  ?></td>
-                        <td><?php echo $row['company_id'];   ?></td>
-                        <td><?php echo $row['company_name']; ?></td>
-                        <td><?php echo $row['delivery_date']; ?></td>
-                        <td><?php echo $row['container_amount']; ?></td>
-                        <td><?php echo $row['delivery_weight']; ?></td>
-                        <td><?php echo $row['delivery_status']; ?></td>
+    <?php
+    #start of while loop
+    while ($row = mysqli_fetch_assoc($result)) {
 
-                        </td>
+        $delivery_id = $row['delivery_id'];
+        $company_id = $row['company_id'];
+        $company_name = $row['company_name'];
+        $delivery_date = $row['delivery_date'];
+        $container_amount = $row['container_amount'];
+        $delivery_weight = $row['delivery_weight'];
+        $delivery_weight = $row['Transport_method'];
+        $delivery_status = $row['delivery_status'];
+        $more_info = $row['more_info'];
 
+
+
+
+
+
+    ?>
+
+        <tr>
+
+            <td><?php echo $row['delivery_id'];  ?></td>
+            <td><?php echo $row['company_id'];   ?></td>
+            <td><?php echo $row['company_name']; ?></td>
+            <td><?php echo $row['delivery_date']; ?></td>
+            <td><?php echo $row['container_amount']; ?></td>
+            <td><?php echo $row['delivery_weight']; ?></td>
+            <td><?php echo $row['Transport_method']; ?></td>
+            <td><?php echo $row['delivery_status']; ?></td>
+            <td><?php echo $row['more_info']; ?></td>
+            
+
+            <td><button type="button" style="text-decoration:none; "><a href="deleterecord.php?delivery_id=<?php echo $row['delivery_id'];  ?>" style="text-decoration:none;">delete</a></button></td>
                     </tr>
 
                 <?php
@@ -380,7 +413,7 @@ tr:hover {
         </div>
     
     <?php
-    $result = mysqli_query($conn, 'SELECT SUM(container_amount) AS value_sum FROM deliveries where delivery_date = curdate()   ');
+    $result = mysqli_query($connection, 'SELECT SUM(container_amount) AS value_sum FROM deliveries where delivery_date = curdate()   ');
     $row = mysqli_fetch_assoc($result);
     $sum = $row['value_sum'];
     echo 'Capacity: ', $sum = $row['value_sum'];
@@ -413,3 +446,4 @@ tr:hover {
 </body>
 
 </html>
+

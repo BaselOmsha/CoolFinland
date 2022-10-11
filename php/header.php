@@ -85,14 +85,20 @@ session.getAttribute("LoggedUser");
 		<div id="navbar">
 			<div class="logo-left-wrapper">
 				<a href="#ty"> <img class="home-button" alt="home button"
-					src="../images/Logo2.png" Style="height: 35px; width: 35px"></a>
+					src="../images/coolFinLogo.png" Style="height: 35px; width: 35px"></a>
 			</div>
 			<div class="center-topnav">
 				<div class="wrap">
 					<div class="wrap2">
 						<img class="home-button" alt="home button"
 							src="../images/homeIcon.png" Style="height: 20px; width: 20px"
-							onclick="window.location.href='#ty'">
+							onclick="window.location.href='main.php'">
+													
+					</div>
+					<div class="wrap2">
+						<img class="home-button" alt="calendar button"
+							src="../images/calendar.png" Style="height: 28px; width: 28px"
+							onclick="window.location.href='searchBydate.php'">
 													
 					</div>
 				</div>
