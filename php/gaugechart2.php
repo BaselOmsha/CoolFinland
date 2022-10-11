@@ -1,5 +1,5 @@
 <?php
-include "../conn/conn.php";
+include "./conn/conn.php";
 ?>
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

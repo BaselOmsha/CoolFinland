@@ -109,7 +109,7 @@ section:target h1 {
 }
 
 #first {
-  background:#EBFFD4  ;
+  background:white  ;
 }
 #second {
     background: #EBFFD4   ;
@@ -127,25 +127,109 @@ section:target h1 {
     100% { opacity:1 }
 }
 
+.container
+{
+    display: flex;
+    flex-direction: column;
+    
+
+}
+.chart{
+}
+
+
+
+body{
+	margin:0;
+	padding:20px;
+	font-family: sans-serif;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+.table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table td,.table th{
+  padding:12px 15px;
+  border:1px solid #ddd;
+  text-align: center;
+  font-size:16px;
+}
+
+.table th{
+	background-color: darkblue;
+	color:#ffffff;
+}
+
+.table tbody tr:nth-child(even){
+	background-color: #f5f5f5;
+}
+
+/*responsive*/
+
+@media(max-width: 500px){
+	.table thead{
+		display: none;
+	}
+
+	.table, .table tbody, .table tr, .table td{
+		display: block;
+		width: 100%;
+	}
+	.table tr{
+		margin-bottom:15px;
+	}
+	.table td{
+		text-align: right;
+		padding-left: 50%;
+		text-align: right;
+		position: relative;
+	}
+	.table td::before{
+		content: attr(data-label);
+		position: absolute;
+		left:0;
+		width: 50%;
+		padding-left:15px;
+		font-size:15px;
+		font-weight: bold;
+		text-align: left;
+	}
+}
+
   </style>
 </head>
 <body>
 <nav>
    <a href="#first"><i class="fa fa-home fa-fw"></i></a>
+   <a href="#third"><i class="fa fa-search" aria-hidden="true"></i></a>
+
    <a href="#second"><i class="fa fa-search" aria-hidden="true" onclick="window.location.href='./php/searchBydate.php'"></i></a>
-   <a href="#third"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+
 
  </nav>
-  
-<div class= 'container'> 
-  <section id= 'first'>
-    <h1>First</h1>
+<section id= 'first'>
+<div class="container" > 
+<div class="box-1" >
 
-    <div class="container">
-    <div class="tnt">
+
         <h5><b>Welcome&nbsp;&nbsp; </b></h5>
 		<h4 style="color:green"><?php echo  $_SESSION['user']; ?></h4>
-        <div class="col1">
+           <div class="chart">
+               <center>
+           <?php
+
+            include 'chart.php';
+            ?>
+            </center>
+</div>
+        </div>
+        <div class="box-2" >
 
         <input type="text" class="input" id="myInput" onkeyup='tableSearch()' placeholder="Search by name..">
 
@@ -222,15 +306,9 @@ section:target h1 {
 
         ?>
         </div>
-        <div class="col2">
-            <?php
-
-            include 'chart.php';
-            ?>
-
         </div>
-        </div>
-        </div>
+       
+        
 
         <script type="application/javascript">
             //this is javascript for searchtable
@@ -258,14 +336,14 @@ section:target h1 {
         </script>
     
   </section>
-  
+  </div>
   <section id= 'second'>
   </section>
   
  <section id= 'third'>
-            <?php require '../main.php#first'; ?>
-  </section>
-  
+     <div class="st" style="width: 400px;">
+            <?php include "./php/searchBydate.php"?>
+            </div>
  <section id= 'fourth'>
    <h1>Fourth</h1>
   </section>

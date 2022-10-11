@@ -1,14 +1,12 @@
 <?php
-header("Cache-Control: no cache");
-session_cache_limiter("private_no_expire");
-session_start();
+
 if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
     $_SESSION["returnSite"] = "../main.php#first";
-    header("Location:../index.html");
+    header("Location:./index.html");
     exit();
 }
-include "./header.php";
-include "../conn/conn.php";
+include "./php/header.php";
+include "./conn/conn.php";
 
 ?>
 	<div class="calander-container">
@@ -321,5 +319,4 @@ try {
 				</div>
 	
 <?php
-include "../html/footer.html";
 ?>

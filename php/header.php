@@ -133,9 +133,9 @@ session.getAttribute("LoggedUser");
 		
 		<div class="container">
 		<div class="char-container">
-		<?php include "./gaugechart.php"; ?>
+		<?php include "./php/gaugechart.php"; ?>
 		<h1 style="color: white; margin-left:-150px; margin-right:50px">Daily Capacity Dash Board</h1><br>
-		<?php include "./gaugechart2.php"; ?>
+		<?php include "./php/gaugechart2.php"; ?>
 		</div>
 			<div class="content-container">
 				<!-- <script src="../js/scripts.js"></script> -->

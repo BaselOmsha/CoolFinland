@@ -48,8 +48,8 @@
         slices: [{}, {
           offset: 0.09
         }, ],
-        'width': 400,
-        'height': 400,
+        'width': 300,
+        'height': 300,
         colors: ['#74E29B', '#F36767'],
 
 
