@@ -208,8 +208,7 @@ body{
 <nav>
    <a href="#first"><i class="fa fa-home fa-fw"></i></a>
    <a href="#third"><i class="fa fa-search" aria-hidden="true"></i></a>
-
-   <a href="#second"><i class="fa fa-search" aria-hidden="true" onclick="window.location.href='./php/searchBydate.php'"></i></a>
+   <a href="#second"><i class="fa fa-sign-out" aria-hidden="true" ></i></a>
 
 
  </nav>
@@ -341,12 +340,8 @@ body{
   </section>
   
  <section id= 'third'>
-     <div class="st" style="width: 400px;">
-            <?php include "./php/searchBydate.php"?>
-            </div>
- <section id= 'fourth'>
-   <h1>Fourth</h1>
-  </section>
+  
+
 </div>
 
 <script type="application/javascript">
