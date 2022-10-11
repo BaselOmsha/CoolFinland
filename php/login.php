@@ -17,16 +17,17 @@ try {
     mysqli_stmt_execute($stmt);
     $print = mysqli_stmt_get_result($stmt);
     if ($row = mysqli_fetch_object($print)) { //return the row of result as an object
-        $_SESSION["user"] = "$row->name"; //show user's username when logged in 
-        print $_SESSION["returnSite"]="./php/searchBydate.php";
+        $_SESSION["name"] = "$row->name"; //show user's username when logged in
+        print "ok";
         exit();
     } else
         print "Invalid username or password!";
     mysqli_close($connection);
-    print "Logging in...";
+    // print $json;
 } catch (Exception $e) {
     print "Error";
 }
+
 ?>
 <?php
 // if username and/or password are not provided return false

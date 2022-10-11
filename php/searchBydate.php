@@ -1,9 +1,7 @@
 <?php
-header("Cache-Control: no cache");
-session_cache_limiter("private_no_expire");
 session_start();
-if (!isset($_SESSION["user"])) { // if session is not set, go to the admin login page
-    $_SESSION["returnSite"] = "/php/searchBydate.php";
+if (!isset($_SESSION["name"])) { // if session is not set, go to the admin login page
+    // $_SESSION["returnSite"] = "/php/searchBydate.php";
     header("Location:../index.html");
     exit();
 }

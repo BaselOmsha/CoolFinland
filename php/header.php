@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title><?php echo  $_SESSION['user']; ?> | Cool Finland</title>
+<title><?php echo  $_SESSION['name']; ?> | Cool Finland</title>
 <link rel="stylesheet" href="../css/profile.css" />
 <link rel="shortcut icon" href="./images/Logo2.png" />
 <link
@@ -113,7 +113,7 @@ session.getAttribute("LoggedUser");
 								Style="height: 25px; width: 36px" onclick="">
 						</div>
 						<h5><b>Welcome&nbsp;&nbsp; </b></h5>
-						<h4 style="color:green"><?php echo  $_SESSION['user']; ?></h4>
+						<h4 style="color:green"><?php echo  $_SESSION['name']; ?></h4>
 					</div>
 					<div class="prof-nav-item" onclick="window.location.href='./logout.php'">
 						<div
