@@ -72,14 +72,14 @@ body {
 input {
   width: 200px;
   height: 50px;
+  margin-right: 1335px;
 }
 
 table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
   background-color: rgb(199, 199, 199);
-
 }
 
 .table td,
@@ -341,10 +341,11 @@ tr:hover {
         </div>
     </div>
 
-        <div>
-
+        <div style="display:flex; align-items:center; flex-direction:column">
+        <br>
         <input type="text" class="input" id="myInput" onkeyup='tableSearch()' placeholder="Search by name..">
-
+        <hr>
+        <br>
 <table class="table  " id="myTable">
     <tr style="border:solid; ">
         <th>delivery_id</th>

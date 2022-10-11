@@ -37,7 +37,7 @@
       ]);
 
       var options = {
-        title: 'Daily capacity',
+        title: 'Containers Daily capacity',
         legend: {
           position: 'bottom',
 
