@@ -207,7 +207,7 @@ body{
 <body>
 <nav>
    <a href="#first"><i class="fa fa-home fa-fw"></i></a>
-   <a href="#third"><i class="fa fa-search" aria-hidden="true"></i></a>
+   <a href="../php/searchBydate.php"><i class="fa fa-search" aria-hidden="true"></i></a>
    <a href="#second"><i class="fa fa-sign-out" aria-hidden="true" ></i></a>
 
 
