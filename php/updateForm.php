@@ -102,10 +102,6 @@ tr:hover {
 }
 
 
-.chart1 {
- /* background-color: rgb(239, 239, 239); */
-}
-
     #navbar {
   display: flex;
   justify-content: center;
