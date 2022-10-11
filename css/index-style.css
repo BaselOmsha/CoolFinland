@@ -59,9 +59,11 @@ a {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	align-items: center;
 	padding-top: 70px;
 	padding-bottom: 130px;
 	flex-wrap: wrap;
+	flex-direction: column-reverse;
 }
 
 .navbar {
