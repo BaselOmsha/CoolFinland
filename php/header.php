@@ -98,8 +98,7 @@ session.getAttribute("LoggedUser");
 					<div class="wrap2">
 						<img class="home-button" alt="calendar button"
 							src="../images/calendar.png" Style="height: 28px; width: 28px"
-							onclick="window.location.href='searchBydate.php'">
-													
+							onclick="window.location.href='searchBydate.php'">							
 					</div>
 				</div>
 			</div>

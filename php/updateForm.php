@@ -379,7 +379,7 @@ tr:hover {
                         </div>
                         <div class= delivery_weight>
                         <label for="">Delivery weight</label>
-                        <input type="number" step="0,01" name="delivery_weight" class="form-control" value='<?php echo $output->delivery_weight;?>' >
+                        <input type="number" step="any" min="0" max="50" name="delivery_weight" class="form-control" value='<?php echo $output->delivery_weight;?>' >
                         </div>
                         <div class= Transport_method>
                         <label for="">Trasporation Method</label>
